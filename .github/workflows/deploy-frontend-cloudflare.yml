@@ -1,0 +1,96 @@
+name: Deploy Frontend to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/web/**'
+      - 'packages/types/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'turbo.json'
+      - '.github/workflows/deploy-frontend-cloudflare.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target Deployment Environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - 'production'
+          - 'preview'
+      api_url:
+        description: 'Optional NEXT_PUBLIC_API_URL override (leave blank for default)'
+        required: false
+        type: string
+
+# Cancel in-progress runs for the same branch to prevent deployment race conditions
+concurrency:
+  group: deploy-cloudflare-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    name: Build & Deploy Frontend (apps/web)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.3
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Next.js Static Export
+        env:
+          NEXT_PUBLIC_API_URL: ${{ inputs.api_url || vars.NEXT_PUBLIC_API_URL || 'http://localhost:8000/v1' }}
+          NODE_ENV: production
+        run: pnpm --filter web build
+
+      - name: Validate Static Output Directory
+        run: |
+          if [ ! -d "apps/web/out" ]; then
+            echo "Error: Static export directory apps/web/out was not generated."
+            exit 1
+          fi
+          echo "Static export artifacts verified in apps/web/out"
+          ls -lh apps/web/out
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/web/out --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME || 'veritrace-web' }} --branch=${{ github.ref_name }} --commit-dirty=true
+
+      - name: Publish Deployment Summary
+        if: always()
+        run: |
+          {
+            echo "### 🚀 Cloudflare Pages Deployment Summary"
+            echo ""
+            echo "- **Target Project:** \`${{ vars.CLOUDFLARE_PROJECT_NAME || 'veritrace-web' }}\`"
+            echo "- **Ref:** \`${{ github.ref_name }}\` (\`${{ github.sha }}\`)"
+            echo "- **Trigger:** \`${{ github.event_name }}\`"
+            echo "- **Status:** ${{ job.status == 'success' && '✅ Succeeded' || '❌ Failed' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -30,6 +30,9 @@ docs/
 │   └── 10-mvp-simulation/         # Simulation boundaries and deterministic fixtures
 ├── database/                      # Executable database schema and query blueprints
 │   └── DATABASE.md                # PostgreSQL DDL, Neo4j projections, Redis namespaces
+├── deployment/                    # Cloud deployment tutorials and operational guides
+│   ├── CLOUDFLARE_PAGES_TUTORIAL.md      # Step-by-step Cloudflare Pages CD tutorial
+│   └── SECRETS_AND_STATIC_VARIABLES.md   # Secrets catalog & static variables reference
 └── specifications/                # Protocol and subsystem specifications
     ├── API_CONTRACTS.md           # Wire protocols, HTTP contracts, and SSE formats
     ├── DATA_MODEL.md              # Domain entity models and graph projection contracts
@@ -62,4 +65,5 @@ For any engineering fork or architectural pattern in the repository, consult the
 | **State Machine** | [STATE_MACHINE.md](specifications/STATE_MACHINE.md) | [ADR-0018](adr/03-data-modeling/ADR-0018-case-status-and-region-status-as-explicit-postgres-enums.md), [ADR-0029](adr/05-state-machine/ADR-0029-case-lifecycle-states.md), [ADR-0030](adr/05-state-machine/ADR-0030-finding-lifecycle-states.md), [ADR-0079](adr/10-mvp-simulation/ADR-0079-shared-state-machine-logic-simulation-matches-real-rules.md) |
 | **API & Streaming** | [API_CONTRACTS.md](specifications/API_CONTRACTS.md) | [ADR-0036](adr/06-api-contracts/ADR-0036-api-style-rest-over-openapi-no-graphql.md), [ADR-0038](adr/06-api-contracts/ADR-0038-pagination-cursor-based-not-offset.md), [ADR-0039](adr/06-api-contracts/ADR-0039-idempotency-for-mutating-endpoints.md), [ADR-0041](adr/06-api-contracts/ADR-0041-server-sent-events-for-narrative-streaming.md) |
 | **Security & Privacy** | [SECURITY.md](specifications/SECURITY.md) | [ADR-0014](adr/02-strategic-design/ADR-0014-field-level-encryption-and-crypto-shredding-scope.md), [ADR-0046](adr/07-security-compliance/ADR-0046-row-level-security-as-the-primary-tenant-isolation-mechanism.md), [ADR-0049](adr/07-security-compliance/ADR-0049-encryption-key-management-for-crypto-shredding.md) |
+| **Frontend CD (Cloudflare Pages)** | [CLOUDFLARE_PAGES_TUTORIAL.md](deployment/CLOUDFLARE_PAGES_TUTORIAL.md) | [ADR-0059](adr/08-frontend-ui/ADR-0059-hosting-cloudflare-pages-workers.md), [ADR-0067](adr/09-infrastructure-hosting/ADR-0067-ci-cd-github-actions-3-environments-oidc-no-long-lived-cloud-credentials.md) |
 | **Deployment Topology** | [INFRA_DEPLOYMENT.md](specifications/INFRA_DEPLOYMENT.md) | [ADR-0059](adr/08-frontend-ui/ADR-0059-hosting-cloudflare-pages-workers.md), [ADR-0066](adr/09-infrastructure-hosting/ADR-0066-api-hosting-aws-ecs-fargate.md), [ADR-0070](adr/09-infrastructure-hosting/ADR-0070-demo-evaluation-hosting-hugging-face-spaces-zerogpu-revised.md), [ADR-0072](adr/09-infrastructure-hosting/ADR-0072-production-gpu-hosting-ecs-mixed-capacity-provider-cluster-not-sagemaker-revised.md) |

@@ -124,3 +124,36 @@ if (!isMounted) {
   return <Skeleton className="..." />;
 }
 ```
+
+---
+
+## 6. pnpm Workspace Root Dependency Injection in CI (`ERR_PNPM_ADDING_TO_ROOT`)
+
+### Cause
+In GitHub Actions CI/CD workflows utilizing `cloudflare/wrangler-action@v3`, the action checks for Wrangler via `pnpm exec wrangler --version`. If `wrangler` is not explicitly declared as a dependency in the repository, the action dynamically executes `pnpm add wrangler@<version>` at runtime. In a pnpm monorepo managed via `pnpm-workspace.yaml`, adding packages directly to the repository root without the `-w` (`--workspace-root`) flag triggers a fatal exception:
+```text
+ERR_PNPM_ADDING_TO_ROOT: Running this command will add the dependency to the workspace root,
+which might not be what you want - if you really meant it, make it explicit by running this
+command again with the -w flag (or --workspace-root).
+```
+
+### Automated Prevention
+1. **Declare Wrangler in Monorepo Root `devDependencies`**:
+   In root `package.json`:
+   ```json
+   "devDependencies": {
+     "turbo": "^2.3.0",
+     "typescript": "^5.6.3",
+     "prettier": "^3.3.3",
+     "wrangler": "^3.90.0"
+   }
+   ```
+   This ensures `pnpm install --frozen-lockfile` provisions Wrangler in the workspace cache, allowing `pnpm exec wrangler --version` to succeed without dynamic installations.
+
+2. **Permit Root Additions via `.npmrc`**:
+   In the repository root `.npmrc`:
+   ```ini
+   ignore-workspace-root-check=true
+   ```
+   This acts as a failsafe, preventing pnpm from aborting if any third-party action attempts to install tools at the workspace root.
+

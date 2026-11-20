@@ -41,3 +41,18 @@ Deployments avoid long-lived cloud credentials using GitHub Actions OIDC federat
 1. GitHub Action exchanges short-lived JWT with AWS STS (`sts:AssumeRoleWithWebIdentity`).
 2. Scoped IAM role grants container push permissions to AWS ECR and service update on ECS.
 3. Protected environments (`development`, `staging`, `production`) enforce mandatory reviewer approvals prior to production rolling deploys.
+
+---
+
+## 3. Frontend Continuous Deployment (Cloudflare Pages)
+
+The Next.js presentation shell (`apps/web`) deploys directly to **Cloudflare Pages** using a dedicated, standalone CD workflow:
+
+- **Workflow Definition:** [deploy-frontend-cloudflare.yml](../../.github/workflows/deploy-frontend-cloudflare.yml)
+- **Step-by-Step Deployment Tutorial:** [CLOUDFLARE_PAGES_TUTORIAL.md](../deployment/CLOUDFLARE_PAGES_TUTORIAL.md)
+- **Secrets and Static Variables Reference:** [SECRETS_AND_STATIC_VARIABLES.md](../deployment/SECRETS_AND_STATIC_VARIABLES.md)
+
+### Key Characteristics:
+- **Zero Runtime Cold Starts:** Pre-rendered static SPA distribution (`apps/web/out`) served from Cloudflare's global edge network.
+- **Automated & Manual Controls:** Triggers on pushes to `main` touching frontend code, with on-demand manual dispatch via `workflow_dispatch`.
+- **Scoped Credentials:** Uses a scoped Cloudflare API token limited exclusively to `Account.Cloudflare Pages: Edit`.
