@@ -1,0 +1,61 @@
+[
+  {
+    "id": "ev_001",
+    "case_id": "case_001",
+    "claim_type": "ownership_percentage",
+    "source_type": "document",
+    "source_reference": "shareholder_declaration_2026.pdf (p.3)",
+    "source_quote": "Nordhaven Trading Ltd maintains a forty percent (40%) qualifying ownership share in Greenfield Subsidiary Ltd.",
+    "claim_value": {
+      "percentage": 40,
+      "entity": "Greenfield Subsidiary Ltd"
+    },
+    "provenance": {
+      "model_task_type": "ocr_extraction",
+      "model_provider": "veritrace_inference_service",
+      "model_identifier": "doc-ocr-v2.1",
+      "confidence": 0.985,
+      "latency_ms": 142
+    },
+    "created_at": "2026-11-17T08:10:00Z"
+  },
+  {
+    "id": "ev_002",
+    "case_id": "case_001",
+    "claim_type": "ownership_percentage",
+    "source_type": "registry",
+    "source_reference": "Companies House PSC Confirmation Statement CS01",
+    "source_quote": "Ownership of shares - More than 50% but less than 75% (Notified holding: 55%). Date of change: 12/04/2026.",
+    "claim_value": {
+      "percentage": 55,
+      "entity": "Greenfield Subsidiary Ltd"
+    },
+    "provenance": {
+      "model_task_type": "entity_resolution",
+      "model_provider": "veritrace_inference_service",
+      "model_identifier": "ubo-resolver-transformer-v1",
+      "confidence": 0.942,
+      "latency_ms": 86
+    },
+    "created_at": "2026-11-17T08:12:00Z"
+  },
+  {
+    "id": "ev_003",
+    "case_id": "case_001",
+    "claim_type": "registered_address",
+    "source_type": "registry",
+    "source_reference": "RJSC Certified Form XII Filing Ref 98421",
+    "source_quote": "Registered Office of Bengal Shipping Corp: 42 Dilkusha C/A, Motijheel, Dhaka-1000.",
+    "claim_value": {
+      "address": "42 Dilkusha C/A, Motijheel, Dhaka-1000"
+    },
+    "provenance": {
+      "model_task_type": "name_match",
+      "model_provider": "veritrace_inference_service",
+      "model_identifier": "multilingual-entity-match-bd",
+      "confidence": 0.918,
+      "latency_ms": 64
+    },
+    "created_at": "2026-11-17T08:15:00Z"
+  }
+]

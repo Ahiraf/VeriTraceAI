@@ -1,0 +1,24 @@
+[
+  {
+    "id": "find_001",
+    "case_id": "case_001",
+    "type": "ownership_conflict",
+    "label": "Ownership Percentage Discrepancy",
+    "summary": "Declared 40% vs Companies House PSC observed 55% majority ownership of Greenfield Subsidiary Ltd.",
+    "status": "open",
+    "declared_value": "40%",
+    "observed_value": "55%",
+    "evidence_ids": ["ev_001", "ev_002"]
+  },
+  {
+    "id": "find_002",
+    "case_id": "case_001",
+    "type": "address_mismatch",
+    "label": "Cross-Border Operating Address Variance",
+    "summary": "Operating facility claimed in Chattogram Export Zone, but RJSC registered office registered in Motijheel, Dhaka.",
+    "status": "acknowledged",
+    "declared_value": "Plot 14, CEPZ, Chattogram",
+    "observed_value": "Dilkusha C/A, Motijheel, Dhaka",
+    "evidence_ids": ["ev_003"]
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "case_001": {
+    "nodes": [
+      { "id": "p_01", "label": "Erik Nordhaven", "type": "person", "jurisdiction": "UK" },
+      { "id": "e_01", "label": "Nordhaven Trading Ltd", "type": "entity", "jurisdiction": "UK", "is_subject": true },
+      { "id": "e_02", "label": "Greenfield Subsidiary Ltd", "type": "entity", "jurisdiction": "UK" },
+      { "id": "e_03", "label": "Bengal Shipping Corp", "type": "entity", "jurisdiction": "BD" },
+      { "id": "p_02", "label": "Tariqul Islam", "type": "person", "jurisdiction": "BD" }
+    ],
+    "edges": [
+      { "id": "ed_01", "source": "p_01", "target": "e_01", "percentage": 85, "provenance_type": "declared" },
+      { "id": "ed_02", "source": "e_01", "target": "e_02", "percentage": 40, "provenance_type": "declared", "conflict": true },
+      { "id": "ed_03", "source": "e_01", "target": "e_02", "percentage": 55, "provenance_type": "observed", "conflict": true },
+      { "id": "ed_04", "source": "e_01", "target": "e_03", "percentage": 65, "provenance_type": "reconciled" },
+      { "id": "ed_05", "source": "p_02", "target": "e_03", "percentage": 35, "provenance_type": "reconciled" }
+    ]
+  }
+}

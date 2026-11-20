@@ -1,0 +1,54 @@
+[
+  {
+    "id": "case_001",
+    "entity_name": "Nordhaven Trading Ltd",
+    "registry_id": "UK-12345678",
+    "jurisdiction": "UK",
+    "status": "AnalystReview",
+    "assigned_investigator": "A. Reyes",
+    "finding_count": 2,
+    "open_finding_count": 1,
+    "version": 1,
+    "created_at": "2026-11-17T08:00:00Z",
+    "updated_at": "2026-11-18T09:12:00Z"
+  },
+  {
+    "id": "case_002",
+    "entity_name": "Bengal Shipping Corp",
+    "registry_id": "BD-C-987654",
+    "jurisdiction": "BD",
+    "status": "Cleared",
+    "assigned_investigator": "J. Khan",
+    "finding_count": 0,
+    "open_finding_count": 0,
+    "version": 2,
+    "created_at": "2026-11-15T10:00:00Z",
+    "updated_at": "2026-11-17T14:30:00Z"
+  },
+  {
+    "id": "case_003",
+    "entity_name": "Apex Maritime Logistics",
+    "registry_id": "UK-87654321",
+    "jurisdiction": "UK",
+    "status": "Escalated",
+    "assigned_investigator": "A. Reyes",
+    "finding_count": 3,
+    "open_finding_count": 0,
+    "version": 4,
+    "created_at": "2026-11-10T11:00:00Z",
+    "updated_at": "2026-11-16T16:45:00Z"
+  },
+  {
+    "id": "case_004",
+    "entity_name": "Surma FinTrade Ltd",
+    "registry_id": "BD-C-456123",
+    "jurisdiction": "BD",
+    "status": "Intake",
+    "assigned_investigator": "Unassigned",
+    "finding_count": 0,
+    "open_finding_count": 0,
+    "version": 1,
+    "created_at": "2026-11-20T07:15:00Z",
+    "updated_at": "2026-11-20T07:15:00Z"
+  }
+]
