@@ -1,0 +1,42 @@
+:root {
+  --primary: #1E3A5F;
+  --primary-foreground: #FFFFFF;
+  --background: #FAFAF9;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --border: #E4E4E7;
+  --border-strong: #D1D5DB;
+  --muted-foreground: #52525B;
+  --foreground: #18181B;
+  --finding-indicator: #B45309;
+  --finding-indicator-bg: #FEF3C7;
+  --success: #166534;
+  --success-bg: #DCFCE7;
+  --escalated: #7C2D12;
+  --escalated-bg: #FEE2E2;
+  --focus-ring: #2563EB;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+.dark {
+  --primary: #6B9FD4;
+  --primary-foreground: #0A1221;
+  --background: #0B1420;
+  --surface: #131D2B;
+  --surface-raised: #1A2738;
+  --border: #273449;
+  --border-strong: #3B4D63;
+  --muted-foreground: #9AA5B1;
+  --foreground: #E8ECF0;
+  --finding-indicator: #D89B4A;
+  --finding-indicator-bg: #2A1F0D;
+  --success: #4ADE80;
+  --success-bg: #0A2615;
+  --escalated: #E38B6B;
+  --escalated-bg: #2A1210;
+  --focus-ring: #60A5FA;
+}

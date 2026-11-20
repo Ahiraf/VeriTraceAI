@@ -1,0 +1,126 @@
+:root {
+  --primary: #1E3A5F;
+  --primary-foreground: #FFFFFF;
+  --background: #FAFAF9;
+  --surface: #FFFFFF;
+  --surface-raised: #FFFFFF;
+  --border: #E4E4E7;
+  --border-strong: #D1D5DB;
+  --muted-foreground: #52525B;
+  --foreground: #18181B;
+  --finding-indicator: #B45309;
+  --finding-indicator-bg: #FEF3C7;
+  --success: #166534;
+  --success-bg: #DCFCE7;
+  --escalated: #7C2D12;
+  --escalated-bg: #FEE2E2;
+  --focus-ring: #2563EB;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+.dark {
+  --primary: #6B9FD4;
+  --primary-foreground: #0A1221;
+  --background: #0B1420;
+  --surface: #131D2B;
+  --surface-raised: #1A2738;
+  --border: #273449;
+  --border-strong: #3B4D63;
+  --muted-foreground: #9AA5B1;
+  --foreground: #E8ECF0;
+  --finding-indicator: #D89B4A;
+  --finding-indicator-bg: #2A1F0D;
+  --success: #4ADE80;
+  --success-bg: #0A2615;
+  --escalated: #E38B6B;
+  --escalated-bg: #2A1210;
+  --focus-ring: #60A5FA;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    caret-color: var(--primary);
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+
+  /* Custom precision scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-evidence {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, Consolas, monospace);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -73,6 +73,10 @@ export interface OwnershipNode {
   type: 'entity' | 'person';
   jurisdiction?: string;
   is_subject?: boolean;
+  ubo_percentage?: number;
+  is_pep?: boolean;
+  sanction_status?: 'clear' | 'flagged';
+  registration_number?: string;
 }
 
 export interface OwnershipEdge {
@@ -82,6 +86,8 @@ export interface OwnershipEdge {
   percentage: number;
   provenance_type: 'declared' | 'observed' | 'reconciled';
   conflict?: boolean;
+  filing_date?: string;
+  source_doc_id?: string;
 }
 
 export interface OwnershipGraph {
@@ -100,3 +106,34 @@ export interface CaseDecision {
   cryptographic_hash: string;
   decided_at: string;
 }
+
+export interface BoundingBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface ExtractedField {
+  id: string;
+  document_id: string;
+  field_name: string;
+  field_type: string;
+  value: string;
+  confidence: number;
+  page_number: number;
+  bounding_box: BoundingBox;
+}
+
+export interface CaseDocument {
+  id: string;
+  case_id: string;
+  title: string;
+  filename: string;
+  file_type: string;
+  total_pages: number;
+  sample_page_image: string;
+  uploaded_at: string;
+  extracted_fields: ExtractedField[];
+}
+

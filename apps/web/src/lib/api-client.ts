@@ -1,11 +1,20 @@
-import { Case, Finding, Evidence, OwnershipGraph, CaseDecision } from '@veritrace/types';
+import {
+  Case,
+  Finding,
+  Evidence,
+  OwnershipGraph,
+  CaseDecision,
+  CaseDocument
+} from '@veritrace/types';
 import casesData from './fixtures/cases.json';
 import findingsData from './fixtures/findings.json';
 import evidenceData from './fixtures/evidence.json';
 import graphsData from './fixtures/ownership_graphs.json';
+import documentsData from './fixtures/documents.json';
+import narrativesData from './fixtures/narratives.json';
+import { generateRandomOwnershipGraph } from './graph-generator';
 
 const SIMULATED_LATENCY_MS = 250;
-
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export class ApiClient {
@@ -53,15 +62,59 @@ export class ApiClient {
     return res.json();
   }
 
-  async getOwnershipGraph(caseId: string): Promise<OwnershipGraph | null> {
+  async getOwnershipGraph(caseId: string): Promise<OwnershipGraph> {
     if (this.useMock) {
       await delay(SIMULATED_LATENCY_MS);
-      const graph = (graphsData as Record<string, OwnershipGraph>)[caseId];
-      return graph ? { ...graph, case_id: caseId } : null;
+      const graph = (
+        graphsData as Record<string, { nodes: any[]; edges: any[] }>
+      )[caseId];
+      if (graph) {
+        return { ...graph, case_id: caseId } as OwnershipGraph;
+      }
+      return generateRandomOwnershipGraph(caseId);
     }
     const res = await fetch(`${this.baseUrl}/cases/${caseId}/ownership-graph`);
     if (!res.ok) throw new Error('Failed to fetch ownership graph');
     return res.json();
+  }
+
+  async getRandomOwnershipGraph(caseId: string, variant?: number): Promise<OwnershipGraph> {
+    await delay(150);
+    return generateRandomOwnershipGraph(caseId, variant);
+  }
+
+  async getAllDocuments(): Promise<CaseDocument[]> {
+    if (this.useMock) {
+      await delay(SIMULATED_LATENCY_MS);
+      return documentsData as CaseDocument[];
+    }
+    const res = await fetch(`${this.baseUrl}/documents`);
+    if (!res.ok) throw new Error('Failed to fetch documents');
+    return res.json();
+  }
+
+  async getDocument(caseId: string, documentId: string): Promise<CaseDocument | null> {
+    if (this.useMock) {
+      await delay(SIMULATED_LATENCY_MS);
+      const doc = (documentsData as CaseDocument[]).find(
+        (d) => d.id === documentId && d.case_id === caseId
+      );
+      return doc || null;
+    }
+    const res = await fetch(`${this.baseUrl}/cases/${caseId}/documents/${documentId}`);
+    if (!res.ok) throw new Error('Failed to fetch document');
+    return res.json();
+  }
+
+  async getNarrative(findingId: string): Promise<string | null> {
+    if (this.useMock) {
+      await delay(SIMULATED_LATENCY_MS / 2);
+      return (narrativesData as Record<string, string>)[findingId] || null;
+    }
+    const res = await fetch(`${this.baseUrl}/findings/${findingId}/narrative`);
+    if (!res.ok) throw new Error('Failed to fetch narrative');
+    const data = await res.json();
+    return data.narrative;
   }
 
   async recordDecision(

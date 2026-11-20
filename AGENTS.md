@@ -64,3 +64,10 @@ Stack:
   3. `pnpm test`: Vitest unit/component tests and pytest backend suites.
   4. `pnpm build`: Full Turbo build pipeline validation.
 - **Never Weaken a Gate**: Never alter assertions, coverage floors, or lint rules to force a pass. Report red as red.
+
+---
+
+## 7. Operational Troubleshooting & Knowledge Base
+
+- **Mandatory Troubleshooting Registry**: Whenever resolving unexpected runtime errors, bundling anomalies, socket collisions, or development environment failures, agents must record the root cause, automated prevention mechanism, and recovery steps in `TROUBLESHOOTING.md` before concluding the session.
+- **Reference Precedence**: Before attempting improvised fixes for dev server failures, PostCSS/Tailwind resolution issues, or Next.js route parameter quirks, consult `TROUBLESHOOTING.md` for canonical repository solutions to avoid repeating known mistakes.

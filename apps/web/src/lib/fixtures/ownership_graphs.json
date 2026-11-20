@@ -1,18 +1,53 @@
 {
   "case_001": {
     "nodes": [
-      { "id": "p_01", "label": "Erik Nordhaven", "type": "person", "jurisdiction": "UK" },
-      { "id": "e_01", "label": "Nordhaven Trading Ltd", "type": "entity", "jurisdiction": "UK", "is_subject": true },
-      { "id": "e_02", "label": "Greenfield Subsidiary Ltd", "type": "entity", "jurisdiction": "UK" },
-      { "id": "e_03", "label": "Bengal Shipping Corp", "type": "entity", "jurisdiction": "BD" },
-      { "id": "p_02", "label": "Tariqul Islam", "type": "person", "jurisdiction": "BD" }
+      { "id": "p_01", "label": "Erik Nordhaven", "type": "person", "jurisdiction": "UK", "is_pep": false, "sanction_status": "clear", "ubo_percentage": 85 },
+      { "id": "e_01", "label": "Nordhaven Trading Ltd", "type": "entity", "jurisdiction": "UK", "is_subject": true, "registration_number": "UK-12345678", "sanction_status": "clear" },
+      { "id": "e_02", "label": "Greenfield Subsidiary Ltd", "type": "entity", "jurisdiction": "UK", "registration_number": "UK-88491023", "sanction_status": "clear" },
+      { "id": "e_03", "label": "Bengal Shipping Corp", "type": "entity", "jurisdiction": "BD", "registration_number": "BD-C-987654", "sanction_status": "clear" },
+      { "id": "p_02", "label": "Tariqul Islam", "type": "person", "jurisdiction": "BD", "is_pep": false, "sanction_status": "clear", "ubo_percentage": 35 }
     ],
     "edges": [
-      { "id": "ed_01", "source": "p_01", "target": "e_01", "percentage": 85, "provenance_type": "declared" },
-      { "id": "ed_02", "source": "e_01", "target": "e_02", "percentage": 40, "provenance_type": "declared", "conflict": true },
-      { "id": "ed_03", "source": "e_01", "target": "e_02", "percentage": 55, "provenance_type": "observed", "conflict": true },
-      { "id": "ed_04", "source": "e_01", "target": "e_03", "percentage": 65, "provenance_type": "reconciled" },
-      { "id": "ed_05", "source": "p_02", "target": "e_03", "percentage": 35, "provenance_type": "reconciled" }
+      { "id": "ed_01", "source": "p_01", "target": "e_01", "percentage": 85, "provenance_type": "declared", "filing_date": "2026-01-15", "source_doc_id": "doc_001" },
+      { "id": "ed_02", "source": "e_01", "target": "e_02", "percentage": 40, "provenance_type": "declared", "conflict": true, "filing_date": "2026-06-20", "source_doc_id": "doc_001" },
+      { "id": "ed_03", "source": "e_01", "target": "e_02", "percentage": 55, "provenance_type": "observed", "conflict": true, "filing_date": "2025-12-10", "source_doc_id": "doc_002" },
+      { "id": "ed_04", "source": "e_01", "target": "e_03", "percentage": 65, "provenance_type": "reconciled", "filing_date": "2025-11-05", "source_doc_id": "doc_001" },
+      { "id": "ed_05", "source": "p_02", "target": "e_03", "percentage": 35, "provenance_type": "reconciled", "filing_date": "2025-11-05", "source_doc_id": "doc_001" }
+    ]
+  },
+  "case_002": {
+    "nodes": [
+      { "id": "p_21", "label": "Tariqul Islam", "type": "person", "jurisdiction": "BD", "is_pep": false, "sanction_status": "clear", "ubo_percentage": 60 },
+      { "id": "e_21", "label": "Bengal Shipping Corp", "type": "entity", "jurisdiction": "BD", "is_subject": true, "registration_number": "BD-C-987654", "sanction_status": "clear" },
+      { "id": "e_22", "label": "Bay Container Holdings", "type": "entity", "jurisdiction": "BD", "registration_number": "BD-C-112233", "sanction_status": "clear" }
+    ],
+    "edges": [
+      { "id": "ed_21", "source": "p_21", "target": "e_21", "percentage": 60, "provenance_type": "reconciled", "filing_date": "2026-02-14", "source_doc_id": "doc_003" },
+      { "id": "ed_22", "source": "e_22", "target": "e_21", "percentage": 40, "provenance_type": "reconciled", "filing_date": "2026-02-14", "source_doc_id": "doc_003" }
+    ]
+  },
+  "case_003": {
+    "nodes": [
+      { "id": "p_31", "label": "Dmitry Volkov", "type": "person", "jurisdiction": "CY", "is_pep": true, "sanction_status": "flagged", "ubo_percentage": 62 },
+      { "id": "e_31", "label": "Baltic TransCargo SA", "type": "entity", "jurisdiction": "CY", "registration_number": "CY-HE-49210", "sanction_status": "flagged" },
+      { "id": "e_32", "label": "Apex Maritime Logistics", "type": "entity", "jurisdiction": "UK", "is_subject": true, "registration_number": "UK-87654321", "sanction_status": "clear" },
+      { "id": "p_32", "label": "Nominee Nom Ltd", "type": "entity", "jurisdiction": "BVI", "registration_number": "BVI-90123", "sanction_status": "clear" }
+    ],
+    "edges": [
+      { "id": "ed_31", "source": "p_31", "target": "e_31", "percentage": 100, "provenance_type": "observed", "conflict": true, "filing_date": "2025-08-11" },
+      { "id": "ed_32", "source": "e_31", "target": "e_32", "percentage": 62, "provenance_type": "observed", "conflict": true, "filing_date": "2025-08-11" },
+      { "id": "ed_33", "source": "p_32", "target": "e_32", "percentage": 48, "provenance_type": "declared", "conflict": true, "filing_date": "2026-01-20" }
+    ]
+  },
+  "case_004": {
+    "nodes": [
+      { "id": "p_41", "label": "Rahim Chowdhury", "type": "person", "jurisdiction": "BD", "is_pep": false, "sanction_status": "clear", "ubo_percentage": 30 },
+      { "id": "e_41", "label": "Surma Holdings Ltd", "type": "entity", "jurisdiction": "BD", "registration_number": "BD-C-456000", "sanction_status": "clear" },
+      { "id": "e_42", "label": "Surma FinTrade Ltd", "type": "entity", "jurisdiction": "BD", "is_subject": true, "registration_number": "BD-C-456123", "sanction_status": "clear" }
+    ],
+    "edges": [
+      { "id": "ed_41", "source": "p_41", "target": "e_42", "percentage": 30, "provenance_type": "declared", "filing_date": "2026-11-20" },
+      { "id": "ed_42", "source": "e_41", "target": "e_42", "percentage": 70, "provenance_type": "declared", "filing_date": "2026-11-20" }
     ]
   }
 }

@@ -32,6 +32,7 @@ Pre-PR gate: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 | `docs/specifications/` | State machine rules, API contracts, security, and infra specs |
 | `docs/ui/` | Design system tokens, UX wireframes, and UI architecture |
 | `docs/database/` | PostgreSQL DDL schema reference and Neo4j Cypher definitions |
+| `TROUBLESHOOTING.md` | Canonical operational diagnostics, port collision, and build troubleshooting |
 | `packages/types` | Canonical TypeScript DTOs, domain models, and API interfaces |
 | `apps/web/src/components/` | Modular UI components (Queue, Case Detail, UBO Graph, Viewer) |
 | `apps/web/src/stores/` | Zustand stores (`useSimulationStore.ts` with LocalStorage persist) |
@@ -41,3 +42,7 @@ Pre-PR gate: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`.
 ## Context Hygiene
 
 Stay under ~40% capacity. Load only the specific documentation matching the task; do not preload the entire `docs/` tree. Summarize findings instead of re-reading files repeatedly.
+
+## Troubleshooting & Operational Knowledge
+
+Before debugging runtime, bundling, or socket collision anomalies, check `TROUBLESHOOTING.md`. Always record new operational resolutions there to prevent recurrent errors.
