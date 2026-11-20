@@ -1,0 +1,140 @@
+[
+  {
+    "id": "doc_001",
+    "case_id": "case_001",
+    "title": "Shareholder Register & Beneficial Ownership Declaration",
+    "filename": "shareholder_declaration_2026.pdf",
+    "file_type": "application/pdf",
+    "total_pages": 8,
+    "sample_page_image": "/sample-documents/shareholder_register_p3.svg",
+    "uploaded_at": "2026-11-17T08:05:00Z",
+    "extracted_fields": [
+      {
+        "id": "fld_001",
+        "document_id": "doc_001",
+        "field_name": "director_name",
+        "field_type": "person",
+        "value": "Erik Nordhaven",
+        "confidence": 0.991,
+        "page_number": 3,
+        "bounding_box": {
+          "x": 140,
+          "y": 210,
+          "width": 480,
+          "height": 70
+        }
+      },
+      {
+        "id": "fld_002",
+        "document_id": "doc_001",
+        "field_name": "ownership_percentage",
+        "field_type": "percentage",
+        "value": "40% qualifying ownership share",
+        "confidence": 0.985,
+        "page_number": 3,
+        "bounding_box": {
+          "x": 140,
+          "y": 310,
+          "width": 480,
+          "height": 80
+        }
+      },
+      {
+        "id": "fld_003",
+        "document_id": "doc_001",
+        "field_name": "subsidiary_name",
+        "field_type": "entity",
+        "value": "Greenfield Subsidiary Ltd",
+        "confidence": 0.978,
+        "page_number": 3,
+        "bounding_box": {
+          "x": 140,
+          "y": 420,
+          "width": 480,
+          "height": 70
+        }
+      }
+    ]
+  },
+  {
+    "id": "doc_002",
+    "case_id": "case_001",
+    "title": "Companies House PSC Confirmation Statement CS01",
+    "filename": "companies_house_psc01_filing.pdf",
+    "file_type": "application/pdf",
+    "total_pages": 4,
+    "sample_page_image": "/sample-documents/shareholder_register_p3.svg",
+    "uploaded_at": "2026-11-17T08:12:00Z",
+    "extracted_fields": [
+      {
+        "id": "fld_004",
+        "document_id": "doc_002",
+        "field_name": "notified_holding",
+        "field_type": "percentage",
+        "value": "55% majority ownership",
+        "confidence": 0.975,
+        "page_number": 1,
+        "bounding_box": {
+          "x": 140,
+          "y": 310,
+          "width": 480,
+          "height": 80
+        }
+      }
+    ]
+  },
+  {
+    "id": "doc_003",
+    "case_id": "case_002",
+    "title": "RJSC Certified Schedule Form XII (Registration of Directors & Shareholders)",
+    "filename": "rjsc_certified_form_xii.pdf",
+    "file_type": "application/pdf",
+    "total_pages": 5,
+    "sample_page_image": "/sample-documents/shareholder_register_p3.svg",
+    "uploaded_at": "2026-11-15T10:10:00Z",
+    "extracted_fields": [
+      {
+        "id": "fld_005",
+        "document_id": "doc_003",
+        "field_name": "managing_director",
+        "field_type": "person",
+        "value": "Tariqul Islam",
+        "confidence": 0.968,
+        "page_number": 2,
+        "bounding_box": {
+          "x": 140,
+          "y": 210,
+          "width": 480,
+          "height": 70
+        }
+      }
+    ]
+  },
+  {
+    "id": "doc_004",
+    "case_id": "case_003",
+    "title": "Apex Maritime Logistics Statutory Filing & Sanctions Review",
+    "filename": "apex_maritime_sanctions_review.pdf",
+    "file_type": "application/pdf",
+    "total_pages": 12,
+    "sample_page_image": "/sample-documents/shareholder_register_p3.svg",
+    "uploaded_at": "2026-11-10T11:15:00Z",
+    "extracted_fields": [
+      {
+        "id": "fld_006",
+        "document_id": "doc_004",
+        "field_name": "designated_entity",
+        "field_type": "entity",
+        "value": "Black Sea Maritime Carrier OOO",
+        "confidence": 0.993,
+        "page_number": 4,
+        "bounding_box": {
+          "x": 140,
+          "y": 420,
+          "width": 480,
+          "height": 70
+        }
+      }
+    ]
+  }
+]
